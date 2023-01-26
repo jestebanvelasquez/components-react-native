@@ -1,12 +1,23 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {Text, View} from 'react-native';
+import {FlatList, View} from 'react-native';
+import {styles} from '../theme/appTheme';
+import {FlatListMenuItem} from '../components/FlatListMenuItem';
+import {FlatListHeader} from '../components/FlatListHeader';
+import {FlatListSeparatorItem} from '../components/FlatListSeparatorItem';
+import {menuItems} from '../data/menuItems';
 
 const HomeScreen = () => {
   return (
-    <View>
-      <Text>House!!</Text>
-      <Icon name="star" size={30} color={'green'} />
+    <View style={{...styles.globalMargin, flex: 1}}>
+      <FlatListHeader title="Opciones de Menu" />
+      <FlatList
+        data={menuItems}
+        renderItem={({item}) => <FlatListMenuItem menuItem={item} />}
+        keyExtractor={item => item.name}
+        ListHeaderComponent={FlatListHeader}
+        ItemSeparatorComponent={FlatListSeparatorItem}
+      />
     </View>
   );
 };
