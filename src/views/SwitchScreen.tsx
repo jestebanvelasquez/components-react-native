@@ -9,8 +9,10 @@ const SwitchScreen = () => {
     isActive: true,
     isHungry: true,
     isHappy: false,
+    isSuscribe: false,
   });
-  const onChange = (value: boolean, field: keyof typeof state) => {
+
+  const onChangeSwitch = (value: boolean, field: keyof typeof state) => {
     setState({
       ...state,
       [field]: value,
@@ -33,21 +35,28 @@ const SwitchScreen = () => {
         <Text style={styles.switchText}>is Active</Text>
         <CustomSwitch
           isOn={isActive}
-          onChange={value => onChange(value, 'isActive')}
+          onChange={value => onChangeSwitch(value, 'isActive')}
         />
       </View>
       <View style={styles.SwitchRow}>
         <Text style={styles.switchText}>is Hungry</Text>
         <CustomSwitch
           isOn={isHungry}
-          onChange={value => onChange(value, 'isHungry')}
+          onChange={value => onChangeSwitch(value, 'isHungry')}
         />
       </View>
       <View style={styles.SwitchRow}>
         <Text style={styles.switchText}>is Happy</Text>
         <CustomSwitch
           isOn={isHappy}
-          onChange={value => onChange(value, 'isHappy')}
+          onChange={value => onChangeSwitch(value, 'isHappy')}
+        />
+      </View>
+      <View style={styles.SwitchRow}>
+        <Text style={styles.switchText}>is Suscribe</Text>
+        <CustomSwitch
+          isOn={isActive}
+          onChange={value => onChangeSwitch(value, 'isSuscribe')}
         />
       </View>
       <Text style={styles.switchText}>{JSON.stringify(state, null, 5)}</Text>

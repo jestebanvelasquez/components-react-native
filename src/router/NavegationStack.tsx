@@ -5,6 +5,11 @@ import Animation101Screen from '../views/Animation101Screen';
 import Animation102Screen from '../views/Animation102Screen';
 import SwitchScreen from '../views/SwitchScreen';
 import {AlertScreen} from '../views/AlertScreen';
+import {TextInputsScreen} from '../views/TextInputsScreen';
+import PullToRefreshScreen from '../views/PullToRefreshScreen';
+import {SectionListScreen} from '../views/SectionListScreen';
+import {ModalScreen} from '../views/ModalScreen';
+import {InfinityScrollScreen} from '../views/InfinityScrollScreen';
 
 export type RootStackParams = {
   HomeScreen: undefined;
@@ -12,6 +17,11 @@ export type RootStackParams = {
   Animation102Screen: undefined;
   SwitchScreen: undefined;
   AlertScreen: undefined;
+  TextInputsScreen: undefined;
+  PullToRefreshScreen: undefined;
+  SectionListScreen: undefined;
+  ModalScreen: undefined;
+  InfinityScrollScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -30,6 +40,18 @@ const NavegationStack = () => {
       <Stack.Screen name="Animation102Screen" component={Animation102Screen} />
       <Stack.Screen name="SwitchScreen" component={SwitchScreen} />
       <Stack.Screen name="AlertScreen" component={AlertScreen} />
+      <Stack.Screen name="TextInputsScreen" component={TextInputsScreen} />
+      <Stack.Screen name="SectionListScreen" component={SectionListScreen} />
+      <Stack.Screen name="ModalScreen" component={ModalScreen} />
+      <Stack.Screen
+        name="InfinityScrollScreen"
+        component={InfinityScrollScreen}
+      />
+
+      <Stack.Screen
+        name="PullToRefreshScreen"
+        component={PullToRefreshScreen}
+      />
     </Stack.Navigator>
   );
 };
