@@ -8,7 +8,7 @@ const useFade = () => {
   const fadeIn = () => {
     Animated.timing(opacity, {
       toValue: 1,
-      duration: 600,
+      duration: 300,
       useNativeDriver: true,
     }).start();
   };
