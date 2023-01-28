@@ -1,10 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {MenuItem} from '../interfaces/MenuInterface';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 interface Props {
   menuItem: MenuItem;
@@ -15,17 +16,26 @@ type Nav = {
 
 export const FlatListMenuItem = ({menuItem}: Props) => {
   const navigation = useNavigation<Nav>();
+  const {theme} = useContext(ThemeContext);
+  let color = theme.icon;
 
   return (
     <TouchableOpacity
       activeOpacity={0.6}
       onPress={() => navigation.navigate(menuItem.components)}>
       <View style={styles.container}>
-        <Icon name={menuItem.icon} size={23} color={'#fec003'} />
-        <Text style={styles.title}>{menuItem.name}</Text>
+        <Icon name={menuItem.icon} size={23} color={theme.icon} />
+        <Text style={{...styles.title, color: theme.colors.text}}>
+          {menuItem.name}
+        </Text>
         {/* spacer */}
         <View style={{flex: 1}} />
-        <Icon name={menuItem.row} size={35} color={'gray'} style={styles.row} />
+        <Icon
+          name={menuItem.row}
+          size={35}
+          color={theme.icon}
+          style={{color}}
+        />
       </View>
     </TouchableOpacity>
   );
@@ -39,9 +49,5 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 19,
     marginLeft: 10,
-    color: '#9c9a9a',
-  },
-  row: {
-    color: '#fec003',
   },
 });

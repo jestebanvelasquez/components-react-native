@@ -1,10 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
+import React, {useContext} from 'react';
 import {SectionList, View, Text} from 'react-native';
 import {FlatListHeader} from '../components/FlatListHeader';
 import {styles} from '../theme/appTheme';
 import {FlatListSeparatorItem} from '../components/FlatListSeparatorItem';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 interface Casas {
   casa: string;
@@ -108,6 +109,8 @@ const casas: Casas[] = [
   },
 ];
 export const SectionListScreen = () => {
+  const {theme} = useContext(ThemeContext);
+
   return (
     <View style={{...styles.globalMargin, flex: 1}}>
       {/*  */}
@@ -133,17 +136,22 @@ export const SectionListScreen = () => {
         sections={casas}
         stickySectionHeadersEnabled={true} //para que la section se quede quieta en android
         keyExtractor={(item, i) => item + i}
-        renderItem={({item}) => <Text style={{color: 'white'}}>{item}</Text>}
+        renderItem={({item}) => (
+          <Text style={{color: theme.colors.text}}>{item}</Text>
+        )}
         renderSectionHeader={({section}) => (
-          <View style={{backgroundColor: '#000000'}}>
-            <FlatListHeader title={section.casa} color="#b2b1b1" />
+          <View style={{backgroundColor: theme.colors.background}}>
+            <FlatListHeader title={section.casa} />
           </View>
         )}
         renderSectionFooter={({section}) => (
-          <View style={{backgroundColor: '#000000', marginBottom: 50}}>
+          <View
+            style={{
+              backgroundColor: theme.colors.background,
+              marginBottom: 50,
+            }}>
             <FlatListHeader
               title={`Total : ${section.data.length}`}
-              color="#b2b1b1"
               marginBottom={10}
               marginTop={5}
             />

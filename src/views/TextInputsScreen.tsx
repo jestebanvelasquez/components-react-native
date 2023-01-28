@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react-native/no-inline-styles */
+import React, {useContext} from 'react';
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -12,6 +13,7 @@ import {styles} from '../theme/appTheme';
 import {ScrollView} from 'react-native';
 import useForm from '../hooks/useForm';
 import {CustomSwitch} from '../components/CustomSwitch';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 interface Form {
   name: string;
@@ -27,7 +29,7 @@ export const TextInputsScreen = () => {
     phone: '',
     isSuscribed: true,
   });
-
+  const {theme} = useContext(ThemeContext);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -35,7 +37,13 @@ export const TextInputsScreen = () => {
         <View style={styles.globalMargin}>
           <FlatListHeader title="Text Inputs" />
           <TextInput
-            style={stylesText.inputStyle}
+            style={{
+              ...stylesText.inputStyle,
+              borderBottomWidth: 2,
+              borderColor: theme.dividerColor,
+              opacity: 0.4,
+              color: theme.secondary,
+            }}
             placeholder="User name"
             placeholderTextColor={'white'}
             autoCorrect={false}
@@ -45,7 +53,13 @@ export const TextInputsScreen = () => {
             onChangeText={value => onChange(value, 'name')}
           />
           <TextInput
-            style={stylesText.inputStyle}
+            style={{
+              ...stylesText.inputStyle,
+              borderBottomWidth: 2,
+              borderColor: theme.dividerColor,
+              opacity: 0.4,
+              color: theme.secondary,
+            }}
             placeholder="User Email"
             placeholderTextColor={'white'}
             autoCorrect={false}
@@ -67,7 +81,13 @@ export const TextInputsScreen = () => {
           <FlatListHeader title={JSON.stringify(form, null, 5)} />
 
           <TextInput
-            style={stylesText.inputStyle}
+            style={{
+              ...stylesText.inputStyle,
+              borderBottomWidth: 2,
+              borderColor: theme.dividerColor,
+              opacity: 0.4,
+              color: theme.secondary,
+            }}
             placeholder="User Phone"
             placeholderTextColor={'white'}
             autoCorrect={false}
@@ -89,7 +109,7 @@ const stylesText = StyleSheet.create({
   inputStyle: {
     borderWidth: 1,
     height: 50,
-    borderColor: '#fbf3f34a', // 'gray',
+    // borderColor: '#fbf3f34a',    // 'gray',
     borderRadius: 10,
     paddingHorizontal: 10,
     color: 'white',

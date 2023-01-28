@@ -39,7 +39,7 @@ export const menuItems: MenuItem[] = [
   },
   {
     name: 'Section List',
-    icon: 'albums-outline',
+    icon: 'list-outline',
     components: 'SectionListScreen',
     row: 'caret-forward-outline',
   },
@@ -50,9 +50,15 @@ export const menuItems: MenuItem[] = [
     row: 'caret-forward-outline',
   },
   {
-    name: 'Infinity Scroll',
-    icon: 'infinite-outline',
-    components: 'InfinityScrollScreen',
+    name: 'SlidesS ',
+    icon: 'albums-outline',
+    components: 'SlidesScreen',
+    row: 'caret-forward-outline',
+  },
+  {
+    name: 'Theme App ',
+    icon: 'color-palette-outline',
+    components: 'ThemeAppScreen',
     row: 'caret-forward-outline',
   },
 ];
