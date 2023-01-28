@@ -1,8 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {FlatListHeader} from '../components/FlatListHeader';
 import {CustomSwitch} from '../components/CustomSwitch';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 const SwitchScreen = () => {
   const [state, setState] = useState({
@@ -11,6 +12,7 @@ const SwitchScreen = () => {
     isHappy: false,
     isSuscribe: false,
   });
+  const {theme} = useContext(ThemeContext);
 
   const onChangeSwitch = (value: boolean, field: keyof typeof state) => {
     setState({
@@ -19,7 +21,9 @@ const SwitchScreen = () => {
     });
   };
   const {isActive, isHappy, isHungry} = state;
-
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
   return (
     <View
       style={{
@@ -30,36 +34,44 @@ const SwitchScreen = () => {
         // alignItems: 'center',
         // backgroundColor: 'white',
       }}>
-      <FlatListHeader title="Switches" color="#afafaf" />
+      <FlatListHeader title="Switches" />
       <View style={styles.SwitchRow}>
-        <Text style={styles.switchText}>is Active</Text>
+        <Text style={{...styles.switchText, color: colors.text}}>
+          is Active
+        </Text>
         <CustomSwitch
           isOn={isActive}
           onChange={value => onChangeSwitch(value, 'isActive')}
         />
       </View>
       <View style={styles.SwitchRow}>
-        <Text style={styles.switchText}>is Hungry</Text>
+        <Text style={{...styles.switchText, color: colors.text}}>
+          is Hungry
+        </Text>
         <CustomSwitch
           isOn={isHungry}
           onChange={value => onChangeSwitch(value, 'isHungry')}
         />
       </View>
       <View style={styles.SwitchRow}>
-        <Text style={styles.switchText}>is Happy</Text>
+        <Text style={{...styles.switchText, color: colors.text}}>is Happy</Text>
         <CustomSwitch
           isOn={isHappy}
           onChange={value => onChangeSwitch(value, 'isHappy')}
         />
       </View>
       <View style={styles.SwitchRow}>
-        <Text style={styles.switchText}>is Suscribe</Text>
+        <Text style={{...styles.switchText, color: colors.text}}>
+          is Suscribe
+        </Text>
         <CustomSwitch
           isOn={isActive}
           onChange={value => onChangeSwitch(value, 'isSuscribe')}
         />
       </View>
-      <Text style={styles.switchText}>{JSON.stringify(state, null, 5)}</Text>
+      <Text style={{...styles.switchText, color: colors.text}}>
+        {JSON.stringify(state, null, 5)}
+      </Text>
     </View>
   );
 };
@@ -73,7 +85,6 @@ const styles = StyleSheet.create({
   },
   switchText: {
     fontSize: 25,
-    color: 'white',
   },
 });
 

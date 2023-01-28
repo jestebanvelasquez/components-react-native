@@ -1,9 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {RefreshControl, ScrollView, View} from 'react-native';
 import {styles} from '../theme/appTheme';
 import {FlatListHeader} from '../components/FlatListHeader';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 const PullToRefreshScreen = () => {
   const {top} = useSafeAreaInsets();
@@ -18,6 +19,7 @@ const PullToRefreshScreen = () => {
       setData('hola mundo');
     }, 1000);
   };
+  const {theme} = useContext(ThemeContext);
 
   return (
     <ScrollView
@@ -29,9 +31,9 @@ const PullToRefreshScreen = () => {
           progressBackgroundColor="#ffffff" //solo android
           colors={['#17abdf', '#f78ae0', '#ffe112']} //solo android
           //   style={{backgroundColor: '#ffffff'}} //ios
-          tintColor="#ffe112"
+          tintColor={theme.colors.primary}
           title={'refreshing'}
-          titleColor="#ffe112"
+          titleColor={theme.colors.primary}
         />
       }>
       <View style={styles.globalMargin}>
